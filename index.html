@@ -1,1 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="BPChoque - Batalhão de Polícia de Choque. Conheça a história real, dados oficiais e atuação da unidade de elite da PM.">
+  <meta name="theme-color" content="#000000">
+  <title>BPChoque | Batalhão de Polícia de Choque</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Critical preloader styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .preloader-container {
+      text-align: center;
+    }
+    .bp-symbol-animated {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+    .bp-symbol-animated svg {
+      width: 100%;
+      height: 100%;
+      animation: symbolFloat 1.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+    }
+    .preloader-ring {
+      width: 180px;
+      height: 180px;
+      border: 2px solid rgba(255,255,255,0.1);
+      border-top: 2px solid #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      animation: spinRing 1.2s linear infinite;
+    }
+    .preloader-ring2 {
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 2px solid #888888;
+      border-radius: 50%;
+      position: absolute;
+      top: -25px;
+      left: -25px;
+      animation: spinRingReverse 1.8s linear infinite;
+    }
+    .preloader-text {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 24px;
+      letter-spacing: 6px;
+      color: #ffffff;
+      margin-top: 30px;
+      animation: textPulse 1.5s ease-in-out infinite;
+    }
+    .preloader-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .preloader-dots span {
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+    .preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes symbolFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes spinRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spinRingReverse {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes textPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes dotBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+    .hidden-init { display: none !important; }
+  </style>
+</head>
+<body>
+  <div id="preloader">
+    <div class="preloader-container">
+      <div class="bp-symbol-animated">
+        <div class="preloader-ring"></div>
+        <div class="preloader-ring2"></div>
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 5L93.3 30V70L50 95L6.7 70V30L50 5Z" stroke="#ffffff" stroke-width="2" fill="none"/>
+          <path d="M50 20L75 35V65L50 80L25 65V35L50 20Z" fill="#ffffff" fill-opacity="0.15" stroke="#ffffff" stroke-width="1.5"/>
+          <text x="50" y="58" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="monospace">BP</text>
+        </svg>
+      </div>
+      <div class="preloader-text">BPCHOQUE</div>
+      <div class="preloader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
 
+  <div id="app" class="hidden-init">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <header class="header" id="mainHeader">
+      <div class="header-container">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-shield-haltered"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-main">BPCHOQUE</span>
+            <span class="logo-sub">BATALHÃO DE POLÍCIA DE CHOQUE</span>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#hero" class="nav-link">INÍCIO</a>
+          <a href="#historia" class="nav-link">HISTÓRIA</a>
+          <a href="#atuacao" class="nav-link">ATUAÇÃO</a>
+          <a href="#dados" class="nav-link">DADOS REAIS</a>
+          <a href="#galeria" class="nav-link">GALERIA</a>
+        </nav>
+        <div class="header-actions">
+          <div class="access-controls">
+            <button class="access-btn" id="fontPlus" aria-label="Aumentar fonte">A+</button>
+            <button class="access-btn" id="fontMinus" aria-label="Diminuir fonte">A-</button>
+            <button class="access-btn" id="contrastToggle" aria-label="Alto contraste"><i class="fas fa-eye"></i></button>
+          </div>
+          <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-bolt"></i> UNIDADE DE ELITE
+          </div>
+          <h1 class="hero-title">
+            Batalhão de Polícia<br>
+            <span class="white-text">de Choque</span>
+          </h1>
+          <p class="hero-desc">Excelência operacional, disciplina e preparo tático.<br> 
+          Atuação destacada em operações de alta complexidade e controle de distúrbios civis.</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">47+</span>
+              <span class="stat-label">Anos de História</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Preparo Tático</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">151</span>
+              <span class="stat-label">Policiais Homenageados</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="#historia" class="btn-primary">CONHEÇA A HISTÓRIA <i class="fas fa-arrow-right"></i></a>
+            <a href="#dados" class="btn-outline">DADOS OFICIAIS <i class="fas fa-chart-line"></i></a>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <span>Scroll</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </section>
+
+      <!-- História Section -->
+      <section id="historia" class="section historia">
+        <div class="container">
+          <div class="section-label">
+            <i class="fas fa-timeline"></i> LEGADO INSTITUCIONAL
+          </div>
+          <h2 class="section-title">História de <span class="white-text">Coragem e Evolução</span></h2>
+          <p class="section-subtitle">Desde sua origem, o Batalhão de Polícia de Choque construiu uma trajetória marcada por bravura, inovação tática e compromisso com a sociedade.</p>
+          <div class="timeline" id="timelineContainer"></div>
+        </div>
+      </section>
+
+      <!-- Atuação Section -->
+      <section id="atuacao" class="section atuacao">
+        <div class="container">
+          <div class="section-label">
+            <i class="fas fa-shield-virus"></i> ÁREAS DE OPERAÇÃO
+          </div>
+          <h2 class="section-title">Especializações <span class="white-text">Táticas</span></h2>
+          <p class="section-subtitle">O BPChoque possui múltiplas frentes de atuação, todas com treinamento de ponta e equipamentos especializados.</p>
+          <div class="cards-grid" id="cardsContainer"></div>
+        </div>
+      </section>
+
+      <!-- Dados Reais Section -->
+      <section id="dados" class="section dados">
+        <div class="container">
+          <div class="section-label">
+            <i class="fas fa-chart-simple"></i> ESTATÍSTICAS OFICIAIS
+          </div>
+          <h2 class="section-title">Números que <span class="white-text">Comprovam a Excelência</span></h2>
+          <p class="section-subtitle">Dados consolidados com base nos registros oficiais do Batalhão de Polícia de Choque e anuários da corporação.</p>
+          <div class="stats-showcase" id="statsShowcase"></div>
+          <div class="carousel-modern" id="carouselModern">
+            <div class="carousel-inner" id="carouselInner"></div>
+            <button class="carousel-nav prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-nav next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="facts-banner">
+            <div class="fact"><i class="fas fa-medal"></i> Medalha do Mérito do Batalhão de Choque</div>
+            <div class="fact"><i class="fas fa-trophy"></i> Unidade de Excelência da PM</div>
+            <div class="fact"><i class="fas fa-clock"></i> 47 anos de história (1977-2025)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galeria Section -->
+      <section id="galeria" class="section galeria">
+        <div class="container">
+          <div class="section-label">
+            <i class="fas fa-images"></i> REGISTROS HISTÓRICOS
+          </div>
+          <h2 class="section-title">Galeria de <span class="white-text">Operações</span></h2>
+          <p class="section-subtitle">Imagens do acervo oficial do BPChoque e da Comunicação Social da corporação.</p>
+          <div class="gallery-masonry" id="galleryContainer"></div>
+          <p class="gallery-credits">*Fotografias de arquivo público - Fontes: PM / BPChoque / COC</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <i class="fas fa-shield-haltered" style="font-size: 32px; color: #ffffff;"></i>
+            <h3>BPCHOQUE</h3>
+            <p>Batalhão de Polícia de Choque - Unidade de Elite</p>
+          </div>
+          <div class="footer-links">
+            <h4>Institucional</h4>
+            <a href="#hero">Início</a>
+            <a href="#historia">História</a>
+            <a href="#atuacao">Atuação</a>
+          </div>
+          <div class="footer-contact">
+            <h4>Contato Institucional</h4>
+            <p><i class="fas fa-phone"></i> Emergência: 190</p>
+            <p><i class="fas fa-envelope"></i> comunicacao@pm.gov.br</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2025 BPChoque - Memória Institucional. Dados históricos oficiais.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</body>
+</html>
